@@ -1,6 +1,7 @@
 
 #include "sudoku.h"
 #include <assert.h>
+#include <string.h>
 
 void sudoku_copy(SudokuBoard *source, SudokuBoard *target)
 {
@@ -28,7 +29,7 @@ void sudoku_get_box(SudokuBoard *board, int boxnum, SudokuSet *box)
 {
   int i;
   assert(board && box && boxnum >=0 && boxnum < SNUMSETS);
-  for (i = 0; i < SNUMSET; i++)
+  for (i = 0; i < SNUMSETS; i++)
   {
     int startrow = (boxnum / 3) * 3;
 	int startcol = (boxnum % 3) * 3;
