@@ -25,8 +25,9 @@ typedef struct {
 } SudokuBoard;
 
 /* main check to validate the board */
-bool sudoku_is_valid(SudokuBoard *board);
+bool sudoku_is_invalid(SudokuBoard *board);
 
+ 
 /* returns true if number was set at the specified location on the board, false otherwise */
 bool sudoku_set_cell(SudokuBoard *board, int rownum, int colnum, SudokuCell number);
 
