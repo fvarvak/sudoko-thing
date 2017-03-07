@@ -43,7 +43,7 @@ void sudoku_get_box(SudokuBoard *board, int boxnum, SudokuSet *box)
 static bool has_duplicates(SudokuSet *set)
 {
   int i;
-  bool chk[SSETSIZE]; /* = { false, false, false, false, false, false, false, false, false }; */
+  bool chk[SSETSIZE];  /*  = { false, false, false, false, false, false, false, false, false }; */
   memset(chk, 0, sizeof(chk));
   for (i = 0; i < SSETSIZE; i++)
   {
