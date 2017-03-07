@@ -2,7 +2,7 @@
 #include "sudoku.h"
 #include <assert.h>
 #include <string.h>
-#include <stdio.h>
+
 
 void sudoku_copy(SudokuBoard *source, SudokuBoard *target)
 {
@@ -76,3 +76,12 @@ bool sudoku_is_invalid(SudokuBoard *board)
   }
   return false;
 }
+
+
+bool sudoku_set_cell(SudokuBoard *board, int rownum, int colnum, SudokuCell digit)
+{
+  
+  assert(digit >= 0 && digit <= 9 );
+  board->cells[rownum*9 + colnum] = digit;
+  return true;
+} 

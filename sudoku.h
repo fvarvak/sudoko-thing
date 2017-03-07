@@ -1,7 +1,7 @@
 
 #ifndef SUDOKU_H
 #define SUDOKU_H
-
+#include <stdio.h>
 #include <stdbool.h>
 
 #define SSETSIZE 9
@@ -38,6 +38,6 @@ void sudoku_get_row(SudokuBoard *board, int rownum, SudokuSet *row);
 void sudoku_get_col(SudokuBoard *board, int colnum, SudokuSet *col);
 void sudoku_get_box(SudokuBoard *board, int boxnum, SudokuSet *box);
 
-
+bool suduko_read(FILE * in, SudokuBoard * board);
 
 #endif  /* SUDOKU_H */
