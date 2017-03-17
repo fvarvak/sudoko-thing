@@ -37,6 +37,8 @@ void sudoku_copy(SudokuBoard *source, SudokuBoard *target);
 void sudoku_get_row(SudokuBoard *board, int rownum, SudokuSet *row);
 void sudoku_get_col(SudokuBoard *board, int colnum, SudokuSet *col);
 void sudoku_get_box(SudokuBoard *board, int boxnum, SudokuSet *box);
+SudokuCell sudoku_get_cell(SudokuBoard *board, int rownum, int colnum);
+ 
 
 bool suduko_read(FILE * in, SudokuBoard * board);
 

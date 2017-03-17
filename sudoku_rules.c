@@ -85,3 +85,10 @@ bool sudoku_set_cell(SudokuBoard *board, int rownum, int colnum, SudokuCell digi
   board->cells[rownum*9 + colnum] = digit;
   return true;
 } 
+
+SudokuCell sudoku_get_cell(SudokuBoard *board, int rownum, int colnum)
+{
+ assert(rownum >= 0 && rownum <= SSETSIZE);
+ assert(colnum >= 0 && colnum <= SSETSIZE);
+ return board->cells[rownum*9 + colnum];
+}
