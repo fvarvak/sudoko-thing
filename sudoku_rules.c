@@ -92,3 +92,32 @@ SudokuCell sudoku_get_cell(SudokuBoard *board, int rownum, int colnum)
  assert(colnum >= 0 && colnum <= SSETSIZE);
  return board->cells[rownum*9 + colnum];
 }
+
+Position NullPos()
+{
+  return Pos(-1, -1);
+}
+
+bool IsNullPos(Position p)
+{
+  Position np = NullPos();
+  return np.row == p.row && np.col == p.col;
+}
+
+Position Pos(int r, int c)
+{
+  Position p;
+  p.row = r;
+  p.col = c;
+  return p;
+}
+
+Position sudoku_get_pos_with_cellvalue(SudokuBoard *board, SudokuCell cellvalue)
+{
+  int r, c;
+  for (r = 0; r < SNUMSETS; r++)
+    for (c = 0; c < SNUMSETS; c++)
+	  if (sudoku_get_cell(board, r, c) == cellvalue)
+	    return Pos(r, c);
+  return NullPos();
+}

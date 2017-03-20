@@ -23,24 +23,22 @@ bool sudoku_read(FILE * in, SudokuBoard * board)
   return true;
 }
 
-void sudoku_print(FILE * out, SudokuBoard * board)
-{
-}
+
 
 bool sudoku_solve(SudokuBoard *board)
 {
-  int r, c, n;
+  int n;
   SudokuBoard work;
+  Position p = sudoku_get_pos_with_cellvalue(board, EMPTYCELL);
+  
+  if (IsNullPos(p))
+    return !sudoku_is_invalid(board);
+  
   sudoku_copy(board, &work);
-  for (r = 0; r < SNUMSETS; r++)
-    for (c = 0; c < SNUMSETS; c++)
-	  if (sudoku_get_cell(&work, r, c) == EMPTYCELL)
-	    break;
-  assert(r < SNUMSETS);
-  assert(c < SNUMSETS);
+
   for (n = 1; n <= 9; n++)
   {
-    sudoku_set_cell(&work, r, c, n);
+    sudoku_set_cell(&work, p.row, p.col, n);
     if (sudoku_is_invalid(&work))
 	  continue;
 	if (sudoku_solve(&work))
@@ -52,11 +50,38 @@ bool sudoku_solve(SudokuBoard *board)
   return false;
 }
 
+void sudoku_print(SudokuBoard *board)
+{
+  int r;
+  for (r = 0; r < SNUMSETS; r++)
+  { 
+    char buf[20], *s;
+	int c;
+	for (s = buf, c = 0; c < SNUMSETS; s++, c++)
+	{
+	  if (c > 0 && !(c % 3))
+	    *s++ = ' ';
+	  *s = sudoku_get_cell(board, r, c) + '0';
+	}
+	*s = 0;
+	assert(buf[0]);
+	assert(strlen(buf) >= SNUMSETS);
+	if (!(r % 3))
+	  printf("\n");
+	printf("%s\n", buf);
+  }	
+}
+
 int main()
 {
   SudokuBoard board;
   sudoku_read(stdin, &board);
+  if (sudoku_solve(&board))
+  {
+    printf("A solution:\n");
+    sudoku_print(&board);
+  }
+  else
+    printf("No solutions found!\n");
   return 0;
 }
-
- 
